@@ -384,3 +384,26 @@ code{
   .card{ box-shadow:none; background:white; border-color:#ddd; }
   .row--head{ position: static; background: #f3f3f3; }
 }
+/* ---- FIX: dropdown options in dark mode ---- */
+
+/* Informa al navegador del esquema de color (afecta selects/inputs nativos) */
+:root { color-scheme: dark; }
+:root.light { color-scheme: light; }
+
+/* Asegura que el select se vea bien */
+select.input{
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+}
+
+/* Intenta forzar el estilo del desplegable (funciona en muchos navegadores) */
+select.input option{
+  background-color: #0b1020; /* fondo oscuro */
+  color: rgba(255,255,255,0.92);
+}
+
+/* Cuando estés en tema claro */
+:root.light select.input option{
+  background-color: #ffffff;
+  color: rgba(0,0,0,0.88);
+}
