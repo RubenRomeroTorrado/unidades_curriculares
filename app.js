@@ -25,7 +25,7 @@ const COURSES = [
   { name: "Protecção de Culturas", year: "Mestrado", type: "Unidade Curricular", credits: 6, grade: 12 },
   { name: "Fertilizantes e Técnicas de Fertilização", year: "Mestrado", type: "Unidade Curricular", credits: 6, grade: 15 },
   { name: "Rega e Drenagem", year: "Mestrado", type: "Unidade Curricular", credits: 6, grade: 13 },
-  { name: "Recursos Hídricos", year: "Mestrado", type: "Unidade Curricular", credits: 6, grade: 14 },
+  { name: "Recursos Hídricos", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 14 },
 
     // LICENCIATURA
   { name: "Agricultura II", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 13 },
