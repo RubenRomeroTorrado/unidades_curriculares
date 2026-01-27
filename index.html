@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Histórico | Rubén </title>
+  <meta name="description" content="Unidades curriculares e classificações — resumo claro, moderno e verificável." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="bg-glow"></div>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="#" aria-label="Início">
+        <span class="brand__dot"></span>
+        <span class="brand__text">Rubén · Histórico</span>
+      </a>
+
+      <div class="topbar__actions">
+        <button id="btnTheme" class="btn btn--ghost" type="button" aria-label="Alternar tema">
+          <span class="icon" aria-hidden="true">◐</span>
+          <span class="btn__text">Tema</span>
+        </button>
+        <button id="btnPrint" class="btn btn--ghost" type="button" aria-label="Imprimir ou guardar em PDF">
+          <span class="icon" aria-hidden="true">⎙</span>
+          <span class="btn__text">PDF</span>
+        </button>
+        <a class="btn btn--primary" href="#ucs">
+          <span class="icon" aria-hidden="true">↘</span>
+          <span class="btn__text">Ver classificações</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero__left">
+        <h1>Unidades Curriculares & Classificações</h1>
+        <p class="muted">
+          Resumo compacto, navegável e com média (ponderada por ECTS).
+          Feito para um recrutador perceber o essencial em 15 segundos.
+        </p>
+
+        <div class="kpis" aria-label="Resumo">
+          <div class="card kpi">
+            <div class="kpi__label">Unidades curriculares</div>
+            <div class="kpi__value" id="kpiCount">—</div>
+            <div class="kpi__hint muted">Total registado</div>
+          </div>
+
+          <div class="card kpi">
+            <div class="kpi__label">Média ponderada</div>
+            <div class="kpi__value" id="kpiGPA">—</div>
+            <div class="kpi__hint muted">Por ECTS</div>
+          </div>
+
+          <div class="card kpi">
+            <div class="kpi__label">Melhor nota</div>
+            <div class="kpi__value" id="kpiBest">—</div>
+            <div class="kpi__hint muted">Máximo atingido</div>
+          </div>
+
+          <div class="card kpi">
+            <div class="kpi__label">ECTS</div>
+            <div class="kpi__value" id="kpiCredits">—</div>
+            <div class="kpi__hint muted">Soma total</div>
+          </div>
+        </div>
+
+        <div class="hero__note muted">
+          Dica: altere os dados em <code>app.js</code> (array <code>COURSES</code>) e está feito.
+        </div>
+      </div>
+
+      <div class="hero__right">
+        <div class="card chartCard">
+          <div class="chartCard__head">
+            <div>
+              <div class="chartCard__title">Distribuição de notas</div>
+              <div class="muted chartCard__sub">Barras por intervalos</div>
+            </div>
+            <div class="pill" id="pillScale">0–20</div>
+          </div>
+          <canvas id="gradeChart" width="520" height="260" aria-label="Gráfico de notas"></canvas>
+        </div>
+
+        <div class="card spotlight">
+          <div class="spotlight__title">O essencial, à vista</div>
+          <div class="spotlight__row">
+            <span class="muted">Última atualização</span>
+            <span id="lastUpdated">—</span>
+          </div>
+          <div class="spotlight__row">
+            <span class="muted">Método</span>
+            <span>Estático (GitHub Pages)</span>
+          </div>
+          <div class="spotlight__row">
+            <span class="muted">Verificável</span>
+            <span>Dados editáveis no repositório</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="ucs">
+      <div class="panel__head">
+        <h2>Lista</h2>
+        <div class="muted">Procure, filtre e ordene. Sem complicações.</div>
+      </div>
+
+      <div class="toolbar card">
+        <div class="toolbar__left">
+          <label class="field">
+            <span class="field__label">Pesquisar</span>
+            <input id="q" class="input" type="search" placeholder="Ex.: Python, Rega, Machine Learning..." autocomplete="off" />
+          </label>
+
+          <label class="field">
+            <span class="field__label">Ano</span>
+            <select id="year" class="input">
+              <option value="all">Todos</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="field__label">Tipo</span>
+            <select id="type" class="input">
+              <option value="all">Todos</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="toolbar__right">
+          <label class="field field--inline">
+            <span class="field__label">Ordenação</span>
+            <select id="sort" class="input">
+              <option value="grade_desc">Nota ↓</option>
+              <option value="grade_asc">Nota ↑</option>
+              <option value="name_asc">Nome A→Z</option>
+              <option value="credits_desc">ECTS ↓</option>
+              <option value="year_desc">Ano ↓</option>
+            </select>
+          </label>
+
+          <button id="btnReset" class="btn btn--ghost" type="button">
+            <span class="icon" aria-hidden="true">⟲</span>
+            <span class="btn__text">Repor</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="tableWrap card">
+        <div class="tableHeader">
+          <div class="muted" id="resultsInfo">—</div>
+          <div class="legend">
+            <span class="dot dot--hi"></span><span class="muted">≥ 17</span>
+            <span class="dot dot--mid"></span><span class="muted">14–16</span>
+            <span class="dot dot--lo"></span><span class="muted">&lt; 14</span>
+          </div>
+        </div>
+
+        <div class="table" role="table" aria-label="Tabela de unidades curriculares e notas">
+          <div class="row row--head" role="row">
+            <div class="cell" role="columnheader">Unidade curricular</div>
+            <div class="cell" role="columnheader">Ano</div>
+            <div class="cell" role="columnheader">Tipo</div>
+            <div class="cell cell--num" role="columnheader">ECTS</div>
+            <div class="cell cell--num" role="columnheader">Nota</div>
+            <div class="cell" role="columnheader">Progresso</div>
+          </div>
+          <div id="rows" class="rows" role="rowgroup"></div>
+        </div>
+      </div>
+
+      <footer class="footer muted">
+        HTML/CSS/JS puro. Se isto não chama a atenção, o recrutador está em modo avião.
+      </footer>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
