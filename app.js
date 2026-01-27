@@ -26,6 +26,38 @@ const COURSES = [
   { name: "Fertilizantes e Técnicas de Fertilização", year: "Mestrado", type: "Unidade Curricular", credits: 6, grade: 15 },
   { name: "Rega e Drenagem", year: "Mestrado", type: "Unidade Curricular", credits: 6, grade: 13 },
   { name: "Recursos Hídricos", year: "Mestrado", type: "Unidade Curricular", credits: 6, grade: 14 },
+
+    // LICENCIATURA
+  { name: "Agricultura II", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 13 },
+  { name: "Pastagens e Forragens: Produção, Conservação e Beneficiação", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 17 },
+  { name: "Protecção de Plantas II", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 13 },
+  { name: "Qualidade e Segurança Alimentar", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 11 },
+  { name: "Sistemas de Produção Hortícola, Frutícola e Vitícola II", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 14 },
+  { name: "Agricultura I", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 12 },
+  { name: "Gestão", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 15 },
+  { name: "Seminário", year: "Licenciatura", type: "Seminário", credits: 6, grade: 15 },
+  { name: "Sistemas de Produção Hortícola, Frutícola e Vitícola I", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 16 },
+  { name: "Ecologia", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 15 },
+  { name: "Economia", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 14 },
+  { name: "Geomática", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 14 },
+  { name: "Nutrição Vegetal, Fertilidade do Solo e Fertilização", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 15 },
+  { name: "Zootecnia", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 11 },
+  { name: "Biologia Funcional", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 13 },
+  { name: "Climatologia e Agrometeorologia", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 14 },
+  { name: "Estatística", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 11 },
+  { name: "Protecção de Plantas I", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 15 },
+  { name: "Solos", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 15 },
+  { name: "Análise Matemática", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 12 },
+  { name: "Botânica", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 14 },
+  { name: "Física II", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 12 },
+  { name: "Organização da Produção Agrícola e Pecuária", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 15 },
+  { name: "Química Orgânica e Bioquímica", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 14 },
+  { name: "Álgebra Linear", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 10 },
+  { name: "Análise Sociológica", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 13 },
+  { name: "Biologia Celular e Microbiologia", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 17 },
+  { name: "Física I", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 10 },
+  { name: "Química", year: "Licenciatura", type: "Unidade Curricular", credits: 6, grade: 12 },
+
 ];
 
 const $ = (sel) => document.querySelector(sel);
