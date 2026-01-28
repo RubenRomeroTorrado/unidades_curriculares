@@ -50,11 +50,12 @@
         </p>
         
 
-        <div class="kpis" aria-label="Resumo">
+        <!-- KPIs -->
+        <div class="kpis" aria-label="Resumo académico">
           <div class="card kpi">
             <div class="kpi__label">Unidades curriculares</div>
             <div class="kpi__value" id="kpiCount">—</div>
-            <div class="kpi__hint muted">Total registado</div>
+            <div class="kpi__hint muted">Total filtrado</div>
           </div>
 
           <div class="card kpi">
@@ -64,9 +65,9 @@
           </div>
 
           <div class="card kpi">
-            <div class="kpi__label">Melhor nota</div>
+            <div class="kpi__label">Melhor classificação</div>
             <div class="kpi__value" id="kpiBest">—</div>
-            <div class="kpi__hint muted">Máximo atingido</div>
+            <div class="kpi__hint muted">Nota máxima</div>
           </div>
 
           <div class="card kpi">
@@ -75,67 +76,78 @@
             <div class="kpi__hint muted">Soma total</div>
           </div>
         </div>
-
-
       </div>
 
+      <!-- Gráficos -->
       <div class="hero__right">
-        <div class="card pieCard">
-  <div class="pieCard__head">
-    <div>
-      <div class="pieCard__title">Distribuição por tipo</div>
-      <div class="muted pieCard__sub">% das UCs filtradas</div>
-    </div>
-    <div class="pill" id="pieTotal">—</div>
-  </div>
 
-  <div class="pieWrap">
-    <canvas id="typePie" width="520" height="260" aria-label="Gráfico circular por tipo"></canvas>
-
-    <div class="pieLegend" aria-label="Legenda do gráfico circular">
-      <div class="pieLegend__item">
-        <span class="pieSwatch pieSwatch--a"></span>
-        <span>Agronomia</span>
-        <span class="muted" id="pieA">—</span>
-      </div>
-      <div class="pieLegend__item">
-        <span class="pieSwatch pieSwatch--t"></span>
-        <span>Transversal</span>
-        <span class="muted" id="pieT">—</span>
-      </div>
-      <div class="pieLegend__item">
-        <span class="pieSwatch pieSwatch--i"></span>
-        <span>Tecnologia</span>
-        <span class="muted" id="pieI">—</span>
-      </div>
-    </div>
-  </div>
-</div>
-
+        <!-- Bar chart -->
         <div class="card chartCard">
           <div class="chartCard__head">
             <div>
-              <div class="chartCard__title">Distribuição de notas</div>
-              <div class="muted chartCard__sub">Barras por intervalos</div>
+              <div class="chartCard__title">Distribuição das classificações</div>
+              <div class="muted chartCard__sub">Escala portuguesa (0–20)</div>
             </div>
             <div class="pill" id="pillScale">0–20</div>
           </div>
-          <canvas id="gradeChart" width="520" height="260" aria-label="Gráfico de notas"></canvas>
+
+          <canvas id="gradeChart" width="520" height="260"
+                  aria-label="Gráfico de distribuição de classificações"></canvas>
         </div>
+
+        <!-- Pie chart -->
+        <div class="card pieCard">
+          <div class="pieCard__head">
+            <div>
+              <div class="pieCard__title">Distribuição por área</div>
+              <div class="muted pieCard__sub">% das unidades curriculares filtradas</div>
+            </div>
+            <div class="pill" id="pieTotal">—</div>
+          </div>
+
+          <div class="pieWrap">
+            <canvas id="typePie" width="520" height="260"
+                    aria-label="Gráfico circular por tipo de unidade curricular"></canvas>
+
+            <div class="pieLegend" aria-label="Legenda do gráfico circular">
+              <div class="pieLegend__item">
+                <span class="pieSwatch pieSwatch--a"></span>
+                <span>Agronomia</span>
+                <span class="muted" id="pieA">—</span>
+              </div>
+
+              <div class="pieLegend__item">
+                <span class="pieSwatch pieSwatch--t"></span>
+                <span>Transversal</span>
+                <span class="muted" id="pieT">—</span>
+              </div>
+
+              <div class="pieLegend__item">
+                <span class="pieSwatch pieSwatch--i"></span>
+                <span>Informático</span>
+                <span class="muted" id="pieI">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
+    <!-- Tabela -->
     <section class="panel" id="ucs">
       <div class="panel__head">
-        <h2>Lista</h2>
-        <div class="muted">Procure, filtre e ordene. Sem complicações.</div>
+        <h2>Lista de unidades curriculares</h2>
+        <div class="muted">Pesquisar, filtrar e ordenar</div>
       </div>
 
+      <!-- Toolbar -->
       <div class="toolbar card">
         <div class="toolbar__left">
           <label class="field">
             <span class="field__label">Pesquisar</span>
-            <input id="q" class="input" type="search" placeholder="Ex.: Python, Rega, Machine Learning..." autocomplete="off" />
+            <input id="q" class="input" type="search"
+                   placeholder="Ex.: Python, Rega, Estatística…" autocomplete="off" />
           </label>
 
           <label class="field">
@@ -146,9 +158,9 @@
           </label>
 
           <label class="field">
-            <span class="field__label">Tipo</span>
+            <span class="field__label">Área</span>
             <select id="type" class="input">
-              <option value="all">Todos</option>
+              <option value="all">Todas</option>
             </select>
           </label>
         </div>
@@ -161,7 +173,7 @@
               <option value="grade_asc">Nota ↑</option>
               <option value="name_asc">Nome A→Z</option>
               <option value="credits_desc">ECTS ↓</option>
-              <option value="year_desc">Ano ↓</option>
+              <option value="year_desc">Ciclo ↓</option>
             </select>
           </label>
 
@@ -172,29 +184,31 @@
         </div>
       </div>
 
+      <!-- Table -->
       <div class="tableWrap card">
         <div class="tableHeader">
           <div class="muted" id="resultsInfo">—</div>
-      
         </div>
 
-        <div class="table" role="table" aria-label="Tabela de unidades curriculares e notas">
+        <div class="table" role="table" aria-label="Tabela de classificações académicas">
           <div class="row row--head" role="row">
             <div class="cell" role="columnheader">Unidade curricular</div>
             <div class="cell" role="columnheader">Ciclo de estudos</div>
-            <div class="cell" role="columnheader">Tipo</div>
+            <div class="cell" role="columnheader">Área</div>
             <div class="cell cell--num" role="columnheader">ECTS</div>
             <div class="cell cell--num" role="columnheader">Nota</div>
             <div class="cell" role="columnheader">Progresso</div>
           </div>
+
           <div id="rows" class="rows" role="rowgroup"></div>
         </div>
       </div>
 
       <footer class="footer muted">
-        HTML/CSS/JS puro. Se isto não chama a atenção, o recrutador está em modo avião.
+        Histórico académico interativo desenvolvido em HTML, CSS e JavaScript.
       </footer>
     </section>
+
   </main>
 
   <script src="app.js"></script>
