@@ -80,6 +80,38 @@
       </div>
 
       <div class="hero__right">
+        <div class="card pieCard">
+  <div class="pieCard__head">
+    <div>
+      <div class="pieCard__title">Distribuição por tipo</div>
+      <div class="muted pieCard__sub">% das UCs filtradas</div>
+    </div>
+    <div class="pill" id="pieTotal">—</div>
+  </div>
+
+  <div class="pieWrap">
+    <canvas id="typePie" width="520" height="260" aria-label="Gráfico circular por tipo"></canvas>
+
+    <div class="pieLegend" aria-label="Legenda do gráfico circular">
+      <div class="pieLegend__item">
+        <span class="pieSwatch pieSwatch--a"></span>
+        <span>Agronomia</span>
+        <span class="muted" id="pieA">—</span>
+      </div>
+      <div class="pieLegend__item">
+        <span class="pieSwatch pieSwatch--t"></span>
+        <span>Transversal</span>
+        <span class="muted" id="pieT">—</span>
+      </div>
+      <div class="pieLegend__item">
+        <span class="pieSwatch pieSwatch--i"></span>
+        <span>Tecnologia</span>
+        <span class="muted" id="pieI">—</span>
+      </div>
+    </div>
+  </div>
+</div>
+
         <div class="card chartCard">
           <div class="chartCard__head">
             <div>
