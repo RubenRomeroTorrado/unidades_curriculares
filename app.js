@@ -139,6 +139,7 @@ function applyFilters(){
   render(items);
   updateKPIs(items);
   drawChart(items);
+  drawTypePie(items);
 }
 
 function render(items){
