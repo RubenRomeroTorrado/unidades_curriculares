@@ -456,4 +456,15 @@ select.input option{
 .pieSwatch--a{ background: var(--accent2); }
 .pieSwatch--i{ background: var(--accent); }
 .pieSwatch--t{ background: rgba(255,204,102,0.95); }
+/* --- Fix: canvases no se salen de las cards --- */
+.chartCard, .pieCard{
+  overflow: hidden; /* recorta el canvas si se pasa */
+}
+
+.chartCard canvas, .pieCard canvas{
+  display: block;
+  width: 100%;      /* el canvas ocupa el ancho del card */
+  height: auto;     /* mantiene proporción visual */
+  max-width: 100%;
+}
 
