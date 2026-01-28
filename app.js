@@ -315,11 +315,15 @@ function drawTypePie(items){
   setPieLabel("pieT", pct(counts["Transversal"], total));
   setPieLabel("pieI", pct(counts["Tecnologia"], total));
 
-  // Si no hay datos, dibuja un anillo “vacío”
-  const cx = Math.round(w * 0.33);
-  const cy = Math.round(h * 0.52);
-  const r  = Math.min(w, h) * 0.32;
-  const inner = r * 0.62;
+ const cx = Math.round(w * 0.35);
+const cy = Math.round(h * 0.52);
+
+// Aumentamos el radio externo
+const r  = Math.min(w, h) * 0.40;
+
+// Ajustamos el agujero interno para que no quede muy fino
+const inner = r * 0.60;
+
 
   if (!total){
     drawDonutSegment(ctx, cx, cy, r, inner, 0, Math.PI*2, getCss("--stroke"));
