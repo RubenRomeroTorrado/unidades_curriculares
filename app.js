@@ -350,9 +350,6 @@ const inner = r * 0.60;
     start = end;
   }
 
-  // Centro
-  drawPieCenterText(ctx, cx, cy, `${Math.round((total/total)*100)}%`);
-  drawPieCenterSub(ctx, cx, cy, "do filtro");
 }
 
 function setPieLabel(id, text){
