@@ -330,7 +330,7 @@ function drawTypePie(items){
   // Colores coherentes con tu tema (CSS vars)
   const colors = {
     "Agronomia": getCss("--accent2"),
-    "Informático": getCss("--accent"),
+    "Tecnologia": getCss("--accent"),
     "Transversal": "rgba(255,204,102,0.95)"
   };
 
