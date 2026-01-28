@@ -282,6 +282,120 @@ function drawChart(items){
 
   $("#pillScale").textContent = `0–${SCALE_MAX}`;
 }
+function drawTypePie(items){
+  const canvas = document.getElementById("typePie");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+
+  // HiDPI
+  const dpr = window.devicePixelRatio || 1;
+  const cssW = canvas.clientWidth || canvas.width;
+  const cssH = canvas.clientHeight || canvas.height;
+  canvas.width = Math.floor(cssW * dpr);
+  canvas.height = Math.floor(cssH * dpr);
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+
+  const w = cssW, h = cssH;
+  ctx.clearRect(0,0,w,h);
+
+  // Conteo por tipo
+  const counts = { "Agronomia": 0, "Transversal": 0, "Informático": 0 };
+  for (const x of items){
+    const t = String(x.type || "");
+    if (counts[t] !== undefined) counts[t] += 1;
+  }
+  const total = Object.values(counts).reduce((a,b)=>a+b,0);
+
+  // UI: pill + legend
+  const pieTotal = document.getElementById("pieTotal");
+  if (pieTotal) pieTotal.textContent = total ? `${total} UC(s)` : "0 UC(s)";
+
+  setPieLabel("pieA", pct(counts["Agronomia"], total));
+  setPieLabel("pieT", pct(counts["Transversal"], total));
+  setPieLabel("pieI", pct(counts["Informático"], total));
+
+  // Si no hay datos, dibuja un anillo “vacío”
+  const cx = Math.round(w * 0.33);
+  const cy = Math.round(h * 0.52);
+  const r  = Math.min(w, h) * 0.32;
+  const inner = r * 0.62;
+
+  if (!total){
+    drawDonutSegment(ctx, cx, cy, r, inner, 0, Math.PI*2, getCss("--stroke"));
+    drawPieCenterText(ctx, cx, cy, "Sem dados");
+    return;
+  }
+
+  // Colores coherentes con tu tema (CSS vars)
+  const colors = {
+    "Agronomia": getCss("--accent2"),
+    "Informático": getCss("--accent"),
+    "Transversal": "rgba(255,204,102,0.95)"
+  };
+
+  // Dibujo donut
+  let start = -Math.PI / 2;
+  const order = ["Agronomia", "Transversal", "Informático"]; // orden estable
+  for (const key of order){
+    const value = counts[key];
+    if (!value) continue;
+    const angle = (value / total) * Math.PI * 2;
+    const end = start + angle;
+    drawDonutSegment(ctx, cx, cy, r, inner, start, end, colors[key]);
+    start = end;
+  }
+
+  // Centro
+  drawPieCenterText(ctx, cx, cy, `${Math.round((total/total)*100)}%`);
+  drawPieCenterSub(ctx, cx, cy, "do filtro");
+}
+
+function setPieLabel(id, text){
+  const el = document.getElementById(id);
+  if (el) el.textContent = text;
+}
+
+function pct(part, total){
+  if (!total) return "0%";
+  return `${Math.round((part / total) * 100)}%`;
+}
+
+function drawDonutSegment(ctx, cx, cy, rOuter, rInner, start, end, fill){
+  ctx.beginPath();
+  ctx.arc(cx, cy, rOuter, start, end);
+  ctx.arc(cx, cy, rInner, end, start, true);
+  ctx.closePath();
+  ctx.fillStyle = fill;
+  ctx.globalAlpha = 0.95;
+  ctx.fill();
+  ctx.globalAlpha = 1;
+
+  // borde sutil
+  ctx.strokeStyle = getCss("--stroke");
+  ctx.lineWidth = 1;
+  ctx.stroke();
+}
+
+function drawPieCenterText(ctx, cx, cy, text){
+  ctx.font = "800 16px Inter, system-ui, sans-serif";
+  ctx.fillStyle = getCss("--text");
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.globalAlpha = 0.95;
+  ctx.fillText(text, cx, cy - 6);
+  ctx.globalAlpha = 1;
+}
+
+function drawPieCenterSub(ctx, cx, cy, text){
+  ctx.font = "600 12px Inter, system-ui, sans-serif";
+  ctx.fillStyle = getCss("--muted");
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.globalAlpha = 0.95;
+  ctx.fillText(text, cx, cy + 12);
+  ctx.globalAlpha = 1;
+}
 
 function getCss(varName){
   return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
