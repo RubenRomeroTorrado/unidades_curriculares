@@ -300,7 +300,7 @@ function drawTypePie(items){
   ctx.clearRect(0,0,w,h);
 
   // Conteo por tipo
-  const counts = { "Agronomia": 0, "Transversal": 0, "Tecnológico": 0 };
+  const counts = { "Agronomia": 0, "Transversal": 0, "Tecnologia": 0 };
   for (const x of items){
     const t = String(x.type || "");
     if (counts[t] !== undefined) counts[t] += 1;
@@ -313,7 +313,7 @@ function drawTypePie(items){
 
   setPieLabel("pieA", pct(counts["Agronomia"], total));
   setPieLabel("pieT", pct(counts["Transversal"], total));
-  setPieLabel("pieI", pct(counts["Tecnológico"], total));
+  setPieLabel("pieI", pct(counts["Tecnologia"], total));
 
   // Si no hay datos, dibuja un anillo “vacío”
   const cx = Math.round(w * 0.33);
@@ -336,7 +336,7 @@ function drawTypePie(items){
 
   // Dibujo donut
   let start = -Math.PI / 2;
-  const order = ["Agronomia", "Transversal", "Tecnológico"]; // orden estable
+  const order = ["Agronomia", "Transversal", "Tecnologia"]; // orden estable
   for (const key of order){
     const value = counts[key];
     if (!value) continue;
